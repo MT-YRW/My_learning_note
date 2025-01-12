@@ -4,7 +4,7 @@
 ```shell
 git config --global user.name "your_name"
 git config --global user.email "your_email"
-ssh-keygen -t rsa -C "yangruiwen2002@163.com"
+ssh-keygen -t rsa -C "your_email"
 cd ~/.ssh/
 cat id_rsa.pub
 ssh -T git@github.com
