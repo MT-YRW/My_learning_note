@@ -2,18 +2,15 @@
 
 This is yrw's first note to learn how to write .md file.
 
-@[toc]
-
 # This is first-level heading
 ## This is Second-level heading
 ### This is Third-level heading
-Use "@[toc]" to generate directory.
-Use the number of '#' symbols to indicate the level of the heading for the current content.
-Use "_" or "*" to *Italic* text.
-Use "__" or "**" to __Bold__ text.
-Use "___" or "***" to ___Bold and Italic___ text.
-Use "~~" to ~~Strikethrough~~ text.
-Use "<u>" to <u>Underline<u> text.
+Use "[toc]" to generate directory.\
+Use the number of '#' symbols to indicate the level of the heading for the current content.\
+*Italic* text.\
+__Bold__ text.\
+___Bold and Italic___ text.\
+~~Strikethrough~~ text.\
 Use "*" or "+" or "-" to make a Unordered List.
 * hi
 * i am
@@ -37,8 +34,8 @@ if you want to put a block into a list, you should add four space before ">", li
     > my block in list
 * hi!
 
-Use "`" to demonstrate your code like `print("hello world!")`
-Use "```" to demonstrate your code block
+Demonstrate your code like `print("hello world!")`
+Demonstrate your code block like:
 ```
 def train(args):
     env, env_cfg = task_registry.make_env(name=args.task, args=args)
@@ -48,7 +45,6 @@ def train(args):
 Use "[]()" to create a link. [my repo](https://github.com/MT-YRW/edgeai-yolox-MY.git)
 
 If you want to put an image into your .md file, use [this](https://www.jyshare.com/front-end/59/) to convert iamge to 64base code. 
-![my_pic]
 
 
 
