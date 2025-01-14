@@ -1,6 +1,6 @@
 # This note is to record my humanoid-gym learning process
 ## 2025.1.14
-i successfully run the code to train BHR-FC-2\
+i successfully run the code to train BHR-FC-2
 ### Process record
 * **Prepare a GOOD urdf**
     * make sure the moving joints are set to revolute, and each of them has a limit to constrain their motion.You can get the limit with mujoco.
