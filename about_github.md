@@ -25,3 +25,10 @@ git add *
 git commit -m "annotations"
 git push origin main
 ```
++ About new branch 
+```shell
+git branch your_branch      # create a new branch
+git checkout your_branch    # switch to your branch
+git branch                  # check your branch
+git branch -d your_branch   # delate your branch
+```
