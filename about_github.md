@@ -1,6 +1,6 @@
 # This note is to record command line of github
 
-+ To configure your ssh
++ To configure ssh
 ```shell
 git config --global user.name "your_name"
 git config --global user.email "your_email"
@@ -19,7 +19,7 @@ git branch -M main
 git remote add origin https://github.com/MT-YRW/My_learning_note.git
 git push -u origin main
 ```
-+ To push my code
++ To push code
 ```shell
 git add *
 git commit -m "annotations"

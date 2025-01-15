@@ -1,8 +1,10 @@
 # This note is to record my humanoid-gym learning process
-
-## Process record
+## 2025.1.14
+i successfully run the code to train BHR-FC-2\
+（but i got a very bad result）
+### Process record
 * **Prepare a GOOD urdf**
-    * make sure the moving joints are set to revolute, and each of them has a limit to constrain their motion.You can get the limit with mujoco.
+    * make sure the moving joints are set to **revolute**, and each of them has a **limit** to constrain their motion. You can get the limit by mujoco.
 * **Modify the humanoid_config.py**
     * Asset
         ```shell
@@ -56,7 +58,7 @@
 * **2025.1.14**
     * i successfully trained BHR-FC-2 but get a very bad result. The final reward is -4.
 * **2025.1.15**
-
+    * Still a bad result :(
 
 
 
