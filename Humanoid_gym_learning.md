@@ -1,7 +1,6 @@
 # This note is to record my humanoid-gym learning process
-## 2025.1.14
-i successfully run the code to train BHR-FC-2
-### Process record
+
+## Process record
 * **Prepare a GOOD urdf**
     * make sure the moving joints are set to revolute, and each of them has a limit to constrain their motion.You can get the limit with mujoco.
 * **Modify the humanoid_config.py**
@@ -43,13 +42,20 @@ i successfully run the code to train BHR-FC-2
         ```shell
         python train.py --task=humanoid_ppo --run_name your_name --num_envs 4096
         ```
-### Error record
+## Hyperparameter tuning
+* **About rewards**
+    * i notice that rew_feet_contact_forces has been very low. So i try to modify the max_contact_force. Because the initial pose is a little bit high which may cause impact when landing, resulting in a large instantanous contect force.
+    *  
+## Error record
 * **Tensor error**
     * i mixed up about **"foot_name"** and **"knee_name"** in humanoid_config.py. I thought it means joint name but actually it means **link name**, which caused the code can not find foot and knee so the corresponding tensor is empty.
 * **Reward always zero**
     * **DO NOT** set the **"only_positive_rewards"** to True! Humanoid gym is designed for XBOT robot, its initial parameter does not suitable for our robot. At the very begining the reward turns to be a negative number, if you set "only_positive_rewards" to True, the reward will be cut to zero.
 
-
+## Daily log
+* **2025.1.14**
+    * i successfully trained BHR-FC-2 but get a very bad result. The final reward is -4.
+* **2025.1.15**
 
 
 
