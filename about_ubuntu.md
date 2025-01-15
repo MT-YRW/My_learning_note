@@ -23,7 +23,7 @@
     ```shell
     nvtop
     ```
-* **ssh**
+* **ssh**\
     If you want to use ssh to remote control another device, make sure the target device has already installed and started ssh server.
     * To install ssh
     ```shell
