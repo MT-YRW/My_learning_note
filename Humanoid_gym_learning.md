@@ -47,7 +47,10 @@ i successfully run the code to train BHR-FC-2\
 ## Hyperparameter tuning
 * **About rewards**
     * i notice that rew_feet_contact_forces has been very low. So i try to modify the max_contact_force. Because the initial pose is a little bit high which may cause impact when landing, resulting in a large instantanous contect force.
-    *  
+    * i can't understand, how to check my contact force?? i need to know it.
+    * The contact force is wrong. Why it is 4000+? Does isaacgym get the right link?
+    * i think there is something wrong with urdf file. i compare my urdf and XBOT, i find that only thigh, calf and foot has collision attribute. i modify this bug but the contact force between foot and ground still incorrect.
+    * 
 ## Error record
 * **Tensor error**
     * i mixed up about **"foot_name"** and **"knee_name"** in humanoid_config.py. I thought it means joint name but actually it means **link name**, which caused the code can not find foot and knee so the corresponding tensor is empty.
@@ -59,6 +62,12 @@ i successfully run the code to train BHR-FC-2\
     * i successfully trained BHR-FC-2 but get a very bad result. The final reward is -4.
 * **2025.1.15**
     * Still a bad result :(
+* **2025.1.17**
+    * i added a new reward to encourage alive. It does extended episode length, but it still can't take a step.
+    * Also, the way this code calls the reward function really surprised me. All i need to do is add a function under humanoid_env.py and add a scale under humanoid_config.py. Then the code will base on the scale's name to serch reward function and perform the calculation.
+    * Because of my alive reward, this time i got 15.36 as the final reward.
+* **2025.1.18**
+    *
 
 
 

@@ -7,9 +7,9 @@
     mv old_filename new_filename
     ```
     * To show system process status
-    "ps" is the command to show system process status.
-    -a/-u/-x is different options.
-    "grep" is a command which is used to find text match pattern.
+    "ps" is the command to show system process status.\
+    -a/-u/-x is different options.\
+    "grep" is a command which is used to find text match pattern.\
     ```shell
     ps -aux | grep <pattern>
     ```
