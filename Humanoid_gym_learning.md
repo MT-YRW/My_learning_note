@@ -60,14 +60,14 @@ i successfully run the code to train BHR-FC-2\
 * **Device error**
     * i used server which has six GPU to train my policy, but i want to performing this policy on my computer, which only has one GPU. When i run play command it caused an error:**"Attempting to deserialize object on CUDA device 3 but torch.cuda.device_count() is 1."**. Why? Does the log file record the device information?
     * When the policy was saved by training device, each tensor will **save information about the training device**, in order to make the model transfer smoother and reduce the issues caused by hardware differences between training and inference. So when i change device to perform my policy, i need to use **map_location** to specify the device for loading the policy.
-    ```shell
-    loaded_dict = torch.load(path,map_location=lambda storage, loc: storage.cuda(0))
-    ```
-    where "loc" is the original location of the tensors. You can also implement a more complex mapping, such as:
-    ```shell
-    loaded_dict = torch.load(path, map_location=lambda storage, loc: storage.cuda(0) if 'cuda' in loc else storage.cpu())
-    ```
-    this means if loc include "cuda" string, then put tensors on "cuda:0". If loc is "cpu", then put tensors on CPU. 
+        ```shell
+        loaded_dict = torch.load(path,map_location=lambda storage, loc: storage.cuda(0))
+        ```
+        where "loc" is the original location of the tensors. You can also implement a more complex mapping, such as:
+        ```shell
+        loaded_dict = torch.load(path, map_location=lambda storage, loc: storage.cuda(0) if 'cuda' in loc else storage.cpu())
+        ```
+        this means if loc include "cuda" string, then put tensors on "cuda:0". If loc is "cpu", then put tensors on CPU. 
 
 ## Daily log
 * **2025.1.14**
