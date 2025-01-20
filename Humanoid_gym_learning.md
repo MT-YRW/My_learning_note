@@ -51,7 +51,8 @@ i successfully run the code to train BHR-FC-2\
     * The contact force is wrong. Why it is 4000+? Does isaacgym get the right link?
     * i think there is something wrong with urdf file. i compared my urdf and XBOT and found that in XBOT's urdf, only thigh, calf and foot has collision attribute. i modify this bug but the contact force between foot and ground still incorrect.
     * i closed all collision attribution except foot and torso, the contact force become a normal value.
-    * Why the robot can walk normally but some of rewards are still negative?
+    * Why the robot can walk normally but some of rewards are still negative?   Because some scales is negative...\
+    * policy 0118 makes robot walk with a large knee angle. So try to increase base_height_target to 0.95.
 ## Error record
 * **Tensor error**
     * i mixed up about **"foot_name"** and **"knee_name"** in humanoid_config.py. I thought it means joint name but actually it means **link name**, which caused the code can not find foot and knee so the corresponding tensor is empty.
