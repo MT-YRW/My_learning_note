@@ -48,3 +48,16 @@
     ssh-copy-id target_device_name@target_device_host
     ```
     * Logout with ctrl+d
+* **Tmux**
+    * Before using the shortcut keys, press ctrl+B
+    * 
+
+
+
+
+
+
+
+
+
+

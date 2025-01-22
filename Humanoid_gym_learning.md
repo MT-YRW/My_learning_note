@@ -46,21 +46,20 @@ i successfully run the code to train BHR-FC-2\
         ```
 ## Hyperparameter tuning
 * **About rewards**
-    * i notice that rew_feet_contact_forces has been very low. So i try to modify the max_contact_force. Because the initial pose is a little bit high which may cause impact when landing, resulting in a large instantanous contect force.
-    * i can't understand, how to check my contact force?? i need to know it.
-    * The contact force is wrong. Why it is 4000+? Does isaacgym get the right link?
-    * i think there is something wrong with urdf file. i compared my urdf and XBOT and found that in XBOT's urdf, only thigh, calf and foot has collision attribute. i modify this bug but the contact force between foot and ground still incorrect.
-    * i closed all collision attribution except foot and torso, the contact force become a normal value.
-    * Why the robot can walk normally but some of rewards are still negative?   Because some scales is negative...\
-    * policy 0118 makes robot walk with a large knee angle. So try to increase base_height_target to 0.95.
+    * I noticed that rew_feet_contact_forces has been very low. So i tried to modify the max_contact_force. The initial pose was a little bit high which may cause impact when landing, resulting in a large instantaneous contact force.
+    * The contact force is wrong. Why it is over 4000? Does isaacgym get the correct link?
+    * I think there is something wrong with urdf file. I compared my urdf and XBOT's, and found that in XBOT's urdf, only thigh, calf and foot have collision attribute. I modified this bug but the contact force between foot and ground still incorrect.
+    * I closed all collision attributes except for the foot and torso, the contact force became a normal value.
+    * Why can the robot walk normally but some of the rewards are still negative?   Because some scales is negative...
+    * Policy 0118 makes the robot walk with a large knee angle. So try to increase base_height_target to 0.95.
 ## Error record
 * **Tensor error**
     * i mixed up about **"foot_name"** and **"knee_name"** in humanoid_config.py. I thought it means joint name but actually it means **link name**, which caused the code can not find foot and knee so the corresponding tensor is empty.
 * **Reward always zero**
     * **DO NOT** set the **"only_positive_rewards"** to True! Humanoid gym is designed for XBOT robot, its initial parameter does not suitable for our robot. At the very begining the reward turns to be a negative number, if you set "only_positive_rewards" to True, the reward will be cut to zero.
 * **Device error**
-    * i used server which has six GPU to train my policy, but i want to performing this policy on my computer, which only has one GPU. When i run play command it caused an error:**"Attempting to deserialize object on CUDA device 3 but torch.cuda.device_count() is 1."**. Why? Does the log file record the device information?
-    * When the policy was saved by training device, each tensor will **save information about the training device**, in order to make the model transfer smoother and reduce the issues caused by hardware differences between training and inference. So when i change device to perform my policy, i need to use **map_location** to specify the device for loading the policy.
+    * I used a server with six GPUs to train my policy, but I want to run this policy on my computer, which only has one GPU. When i run the play command it causes an error:**"Attempting to deserialize object on CUDA device 3 but torch.cuda.device_count() is 1."**. Why? Does the log file record the device information?
+    * When the policy is saved by training device, each tensor **saves information about the training device**, in order to make the model transfer smoother and reduce the issues caused by hardware differences between training and inference. So when I change device to perform my policy, I need to use **map_location** to specify the device for loading the policy.
         ```shell
         loaded_dict = torch.load(path,map_location=lambda storage, loc: storage.cuda(0))
         ```
@@ -69,7 +68,8 @@ i successfully run the code to train BHR-FC-2\
         loaded_dict = torch.load(path, map_location=lambda storage, loc: storage.cuda(0) if 'cuda' in loc else storage.cpu())
         ```
         this means if loc include "cuda" string, then put tensors on "cuda:0". If loc is "cpu", then put tensors on CPU. 
-
+* **Play error**
+    * i used different config.py to play the same policy, get two different result. Does the play.py read config.py?? Also the option "--run_name" seem to be useless because it control nothing at all.
 ## Daily log
 * **2025.1.14**
     * i successfully trained BHR-FC-2 but get a very bad result. The final reward is -4.
@@ -84,8 +84,8 @@ i successfully run the code to train BHR-FC-2\
     * The final reward is 338.3 and the episode length is 2335.01. It can walk normally now but some of rewards are still negative.
 * **2025.1.20**
     * i found that policy 0118 makes my robot walk with a large knee angle. I guess it's because my target height was set to low. So I change it to 0.95 meters.
-
-
-
-
-
+    * it seems that i got it wrong. rew_base_height need to set to a smaller number.
+* **2025.1.21**
+    * rew_base_height is set to 0.65.
+* **2025.1.22**
+    * Still not a very good result. the final rew_base_height is 0.0035. i changed initial position and set the target base height to 0.60.
